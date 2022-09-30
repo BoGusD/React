@@ -1,7 +1,7 @@
 export default function PraticeTwo(props) {
   return (
     <div>
-      <h1>{props.text} 컴포넌트</h1>
+      <h1>{props.text} </h1>
     </div>
   );
 }
