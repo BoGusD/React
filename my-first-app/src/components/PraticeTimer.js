@@ -3,7 +3,6 @@ export default function PraticeTimer() {
   const [render, setRender] = useState(0);
   const time = useRef(0);
 
-  const changeFocus = useRef();
   useEffect(() => {
     const timer = setInterval(() => {
       time.current = time.current + 1;
