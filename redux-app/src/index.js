@@ -3,15 +3,21 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { BrowserRouter } from "react-router-dom";
+import { Provider } from "react-redux";
+import { createStore } from "redux";
+import rootReducer from "./store/index";
 
+const reduxDevTool =
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
+
+let store = createStore(rootReducer, reduxDevTool);
+console.log(store.getState());
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  // console.log가 두번 찍혔던 이유 <React.StrictMode>
   <>
-    <BrowserRouter>
+    <Provider store={store}>
       <App />
-    </BrowserRouter>
+    </Provider>
   </>
 );
 

@@ -25,24 +25,31 @@ import PraticeTimer from "./components/PraticeTimer";
 import { useEffect, useRef, useState } from "react";
 import TestUseMemo from "./components/TestUseMemo";
 import UsingUseMemo from "./components/UsingUseMemo";
-// import "./App.css";
+import Where from "./components/Where";
+import Image from "./components/Image";
+import Dialog from "./components/Dialog";
+import WelcomeDialog from "./components/WelcomeDialog";
+import WelcomeDialogBtn from "./components/WelcomeDialogBtn";
+import FancyBorder from "./components/FancyBorder";
+import SignUpDialog from "./components/SignUpDialog";
+import Profile from "./components/Profile";
+import Board from "./components/Board";
+import Header from "./components/Header";
+import NotFound from "./components/NotFound";
+import BoardDetail from "./components/BoardDetail";
+import { Routes, Route, Link } from "react-router-dom";
 
 function App() {
-  // const [show, setShow] = useState(false);
-  // const changeFocus = useRef();
-  // useEffect(() => {
-  //   changeFocus.current.focus();
-  // }, []);
-
   return (
     <div className="App">
-      {/* <TestUseMemo /> */}
-      {/* 무한 랜더링을 피하기 위한 화살표함수 사용
-      {show && <PraticeTimer />}
-      <button ref={changeFocus} onClick={() => setShow(!show)}>
-        {show ? "숨기기" : "보이기"}
-      </button> */}
-      <UsingUseMemo />
+      {/* 실제적으로 routing 역할을 해주는 components */}
+      <Routes>
+        <Route path="/" element={<Header />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/board" element={<Board />} />
+        <Route path="/board/:boardID" element={<BoardDetail />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
     </div>
   );
 }
