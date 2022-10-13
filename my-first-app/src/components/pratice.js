@@ -1,27 +1,27 @@
-function solution(answers) {
-  let answer = [];
-  let answera = 0;
-  let answerb = 0;
-  let answerc = 0;
+function solution(dartResult) {
+  let sum = 0;
+  let answer= [];
+  let num=0;
 
-  let c = [3, 3, 1, 1, 2];
-  let b = [2, 1, 2, 3, 2];
-  let a = [1, 2, 3, 4, 5];
-  for (let i = 0; i < answers.length; i++) {
-    if (answers[i] == a[i]) answera++;
-    if (answers[i] == b[i]) answerb++;
-    if (answer[i] == c[i]) answerc++;
-  }
-  if (answera >= answerb && answera >= answerc) {
-    answer.push(1);
-  }
-  if (answerb >= answera && answerb >= answerc) {
-    answer.push(2);
-  }
-  if (answerc >= answera && answerc >= answerb) {
-    answer.push(3);
-  }
-
-  return answer;
+  
+  for(let i =0; i<dartResult.length; i++){
+      if(dartResult(i)>=0 && dartResult(i)<=9){
+          num ++
+      }
+      else if(dartResult(i)=='S'){
+         answer.push(num)
+      } else if(dartResult(i)=='D'){
+          answer.push(Math.pow(num,2))
+      }else if(dartResult(i)=='T'){
+            answer.push(Math.pow(num,3))
+      }else if(dartResult(i)=='*'){
+         answer.push(answer(i-1))*
+      }else if(dartResult(i)=="#"){
+        answer.push(answer(i-1))*(-1)
+      }
+} for(let i=0; i<answer.length; i++){
+  sum+=answer;
 }
-console.log(solution([1, 3, 2, 4, 2]));
+
+  return sum;
+}
