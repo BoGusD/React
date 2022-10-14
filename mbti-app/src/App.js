@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import GlobalStyle from './components/GlobalStyle';
 import { useSelector } from 'react-redux/es/exports';
 import Mbti from './components/Mbti';
+import Show from './components/Show';
 
 const Main = styled.main`
   box-sizing: border-box;
@@ -16,11 +17,20 @@ const Main = styled.main`
 function App() {
   // combineReducer가 state까지 접근 가능
   const page = useSelector((state) => state.mbti.page);
+  const survey = useSelector((state) => state.mbti.survey);
 
   return (
     <>
       <GlobalStyle />
-      <Main>{page === 0 ? <Start /> : <Mbti />}</Main>
+      <Main>
+        {page === 0 ? (
+          <Start />
+        ) : page !== survey.length + 1 ? (
+          <Mbti />
+        ) : (
+          <Show />
+        )}
+      </Main>
     </>
   );
 }
