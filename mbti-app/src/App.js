@@ -17,12 +17,17 @@ const Main = styled.main`
 function App() {
   // combineReducer가 state까지 접근 가능
   const page = useSelector((state) => state.mbti.page);
-  const survey = useSelector((state) => state.mbti.survey);
+  const survey = useSelector((state) => {
+    console.log(state.mbti);
+    return state.mbti.survey;
+  });
+  console.log(survey);
 
   return (
     <>
       <GlobalStyle />
       <Main>
+        {console.log(page)}
         {page === 0 ? (
           <Start />
         ) : page !== survey.length + 1 ? (

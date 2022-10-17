@@ -16,6 +16,21 @@ const db = {
       }
     );
   },
+  getSurvey: (cb) => {
+    connection.query(
+      'SELECT * FROM mydb.question q LEFT JOIN mydb.answer a ON q.ID_PK=a.QUESTION_ID_FK',
+      (err, data) => {
+        if (err) throw err;
+        cb(data);
+      }
+    );
+  },
+  getExplantion: (cb) => {
+    connection.query('SELECT * from mydb.explanation', (err, data) => {
+      if (err) throw err;
+      cb(data);
+    });
+  },
 };
 
 module.exports = db;

@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-
 import OrangeButton from './OrangeButton';
 import { useSelector, useDispatch } from 'react-redux';
 import { reset } from '../store/modules/mbti';
@@ -7,7 +6,7 @@ import { useEffect } from 'react';
 const Header = styled.p`
   font-size: 3em;
 `;
-const Explaination = styled.p`
+const Explanation = styled.p`
   font-size: 1.5em;
   color: #777;
 `;
@@ -26,12 +25,15 @@ const AdditionalImg = styled.img`
 
 export default function Show() {
   const result = useSelector((state) => state.mbti.mbtiResult);
-  const explaination = useSelector((state) => state.mbti.explaination[result]);
+  console.log(result);
+  const explanation = useSelector((state) => state.mbti.explanation[result]);
+  console.log(explanation);
   const dispatch = useDispatch();
 
   useEffect(() => {
     async function sendData() {
-      const resInc = await fetch('http://localhost:3001/data/inccount', {
+      //sql로 보내려면 'http://localhost:3001/data/inccount'
+      const resInc = await fetch('http://localhost:3001/mongo/inccount', {
         method: 'POST',
       });
       if (resInc.status === 200) {
@@ -45,9 +47,10 @@ export default function Show() {
   return (
     <>
       <Header>당신의 개발자 MBTI 결과는?</Header>
-      <Explaination>{explaination.text}</Explaination> <Result>{result}</Result>
+      <Explanation>{explanation.text}</Explanation>
+      <Result>{result}</Result>
       <Additional>이건 재미로 읽어 보세요!</Additional>
-      <AdditionalImg src={explaination.img} alt="팩폭" />
+      <AdditionalImg src={explanation.img} alt="팩폭" />
       <OrangeButton text="다시 검사하기" clickEvent={() => dispatch(reset())} />
     </>
   );
